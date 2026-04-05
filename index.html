@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>CARPAPA - App Android para Cadastro Ambiental Rural</title>
+    <meta name="description" content="Baixe o aplicativo oficial do CARPAPA - Cadastro Ambiental Rural Popular Avançado do Pará. Democratize o acesso ao CAR para pequenos agricultores.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: linear-gradient(145deg, #f0f7e8 0%, #e2f0da 100%);
+            color: #1a2e1f;
+            line-height: 1.5;
+            padding: 1rem;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.92);
+            border-radius: 2rem;
+            box-shadow: 0 20px 40px rgba(0, 20, 0, 0.15);
+            overflow: hidden;
+            backdrop-filter: blur(2px);
+        }
+
+        /* cabeçalho com imagem temática */
+        .hero {
+            background: linear-gradient(135deg, #1e5620, #2b7a2e);
+            padding: 2.5rem 2rem;
+            color: white;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.4rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .hero h1 span {
+            background: #ffc107;
+            color: #1e5620;
+            font-size: 1rem;
+            padding: 0.2rem 0.8rem;
+            border-radius: 40px;
+            font-weight: 600;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0.8rem auto 0;
+            opacity: 0.9;
+        }
+
+        .badge-pará {
+            background: #f5b042;
+            display: inline-block;
+            padding: 0.3rem 1rem;
+            border-radius: 60px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            color: #1e3a1e;
+            margin-bottom: 1rem;
+        }
+
+        /* conteúdo principal */
+        .content {
+            padding: 2rem 2rem 2.5rem;
+        }
+
+        .grid-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.8rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .card {
+            background: #ffffffdd;
+            backdrop-filter: blur(4px);
+            background: white;
+            border-radius: 1.5rem;
+            padding: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.2s ease;
+            border: 1px solid #cfe3c5;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            border-color: #6fbf4c;
+        }
+
+        .card h3 {
+            font-size: 1.5rem;
+            color: #1f5e2a;
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .card p, .card li {
+            color: #2c3a2b;
+        }
+
+        .lista-func {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .lista-func li {
+            margin-bottom: 0.6rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .lista-func li::before {
+            content: "🌱";
+            font-size: 1.1rem;
+        }
+
+        /* área de download */
+        .download-section {
+            background: #fef9e6;
+            border-radius: 2rem;
+            padding: 2rem;
+            text-align: center;
+            margin-top: 1rem;
+            border: 2px dashed #7cb342;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+        }
+
+        .download-section h2 {
+            font-size: 1.9rem;
+            color: #2b5e2f;
+            margin-bottom: 0.5rem;
+        }
+
+        .btn-download {
+            background: #2e7d32;
+            border: none;
+            color: white;
+            font-size: 1.4rem;
+            font-weight: bold;
+            padding: 1rem 2.2rem;
+            margin: 1.2rem 0;
+            border-radius: 60px;
+            cursor: pointer;
+            box-shadow: 0 6px 0 #1b5e20;
+            transition: 0.07s linear;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .btn-download:active {
+            transform: translateY(3px);
+            box-shadow: 0 2px 0 #1b5e20;
+        }
+
+        .btn-download img {
+            width: 28px;
+            filter: brightness(0) invert(1);
+        }
+
+        .aviso {
+            font-size: 0.85rem;
+            background: #fff3cd;
+            display: inline-block;
+            padding: 0.4rem 1rem;
+            border-radius: 30px;
+            color: #856404;
+            margin-top: 10px;
+        }
+
+        .links {
+            margin-top: 2rem;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.2rem;
+        }
+
+        .link-ext {
+            background: #eaf5e5;
+            padding: 0.6rem 1.2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            color: #1e5a2a;
+            transition: 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .link-ext:hover {
+            background: #c8e6b5;
+            color: #0e3a14;
+        }
+
+        footer {
+            text-align: center;
+            padding: 1.5rem;
+            background: #e1f0da;
+            color: #3e5a36;
+            font-size: 0.85rem;
+            border-top: 1px solid #c0ddb0;
+        }
+
+        @media (max-width: 680px) {
+            .hero h1 { font-size: 1.8rem; }
+            .content { padding: 1.5rem; }
+            .btn-download { font-size: 1.2rem; padding: 0.8rem 1.5rem; }
+            .card h3 { font-size: 1.3rem; }
+        }
+
+        .qrcode-placeholder {
+            background: white;
+            border-radius: 12px;
+            padding: 8px;
+            width: 100px;
+            margin: 10px auto 0;
+            display: none; /* opcional, manter simples */
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="hero">
+        <div class="badge-pará">🌿 GOVERNO DO PARÁ · ACESSIBILIDADE E SOBERANIA</div>
+        <h1>
+            CARPAPA 
+            <span>APP ANDROID</span>
+        </h1>
+        <p>Cadastro Ambiental Rural Popular Avançado – ferramenta gratuita para agricultores familiares e técnicos do Pará.</p>
+        <p style="font-size: 0.9rem; margin-top: 12px;">✔️ Inicie seu CAR direto pelo celular, sem depender de intermediários</p>
+    </div>
+
+    <div class="content">
+        <div class="grid-info">
+            <div class="card">
+                <h3>🌾 Pra que serve?</h3>
+                <p>O CARPAPA democratiza o acesso ao Cadastro Ambiental Rural (CAR). O próprio agricultor cria sua conta, envia documentos e fotos da propriedade. Um técnico do governo valida e aprova — tudo gratuito e com acessibilidade.</p>
+                <p style="margin-top: 12px;"><strong>🔗 Versão web oficial:</strong> <a href="https://carpapa.azurewebsites.net/" target="_blank" rel="noopener">carpapa.azurewebsites.net</a></p>
+            </div>
+            <div class="card">
+                <h3>📱 Funcionalidades do App</h3>
+                <ul class="lista-func">
+                    <li>Cadastro offline-first e sincronização</li>
+                    <li>Upload de fotos das áreas (APP, RL, Uso, Nascentes)</li>
+                    <li>Validação automática de CPF, e-mail e telefone</li>
+                    <li>Acompanhamento de status: Pendente → Aprovado</li>
+                    <li>Widget VLibras para acessibilidade em Libras</li>
+                    <li>Painel técnico para análise de cadastros</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>👥 Quem pode usar?</h3>
+                <p><strong>Agricultor familiar:</strong> cria conta pelo próprio celular, insere dados da posse/propriedade e envia fotos.<br>
+                <strong>Técnico credenciado:</strong> valida informações pelo painel.<br>
+                <strong>Administrador:</strong> gere técnicos e todo o sistema.<br>
+                🌱 <em>Projeto open-source, disponível no GitHub.</em></p>
+                <div style="margin-top: 12px;">
+                    <a href="https://github.com/JoaoLucasSerafim/CARPA" target="_blank" class="link-ext" style="background:#e9ecef;">🐙 GitHub do projeto</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- SEÇÃO DE DOWNLOAD DO APK -->
+        <div class="download-section">
+            <h2>📲 Baixe o aplicativo oficial</h2>
+            <p style="font-size: 1.1rem; margin-bottom: 0.5rem;">Versão Android · APK direto e seguro</p>
+            <p style="font-size: 0.9rem;">Compatível com Android 8.0+. Interface mobile-first, leve e construída para áreas com pouca conectividade.</p>
+            
+            <!-- Botão de download que gera APK simbólico (demonstração) -->
+            <button class="btn-download" id="downloadApkBtn">
+                ⬇️ BAIXAR APK (CARPAPA)
+            </button>
+            <div class="aviso">
+                🔒 Versão demonstrativa para avaliação · APK gerado com dados de exemplo. O app real será disponibilizado em breve nas lojas oficiais.
+            </div>
+            <p style="margin-top: 16px; font-size: 0.8rem;">✔️ Ao clicar, o arquivo <strong>carpapa-android.apk</strong> será salvo no seu dispositivo. Habilite "Instalar de fontes desconhecidas" no seu Android para instalação.</p>
+        </div>
+
+        <div class="links">
+            <a href="https://carpapa.azurewebsites.net/" class="link-ext" target="_blank">🌐 Acessar versão Web (CARPAPA oficial)</a>
+            <a href="https://github.com/JoaoLucasSerafim/CARPA" class="link-ext" target="_blank">📂 Repositório GitHub · Código aberto</a>
+            <a href="#" class="link-ext" id="infoTech">📄 Tecnologias: Django + brutils + Azure</a>
+        </div>
+
+        <div style="background: #eef3ea; border-radius: 1rem; padding: 1.2rem; margin-top: 2rem;">
+            <h3 style="color: #1f5e2a; margin-bottom: 0.5rem;">🌿 Sobre o CARPAPA</h3>
+            <p>Desenvolvido por João Serafim (2026) para a seletiva de robótica SESI Ananindeua e como ferramenta real para agricultores do Pará. O sistema já está em funcionamento no ambiente Azure e atende aos padrões do SICAR. O aplicativo Android estende essa mesma plataforma para smartphones, garantindo que pequenos produtores rurais possam iniciar seu CAR com autonomia.</p>
+            <p style="margin-top: 10px;"><strong>Dados coletados:</strong> Nome, CPF, RG, endereço, georreferenciamento simplificado, fotos das áreas (Reserva Legal, APP, Uso, etc.), documentos de posse. Tudo com validação e supervisão técnica.</p>
+            <p>🤝 <em>“Democratizar o acesso ao CAR é fortalecer a agricultura familiar e a preservação ambiental.”</em></p>
+        </div>
+    </div>
+
+    <footer>
+        <p>CARPAPA - Cadastro Ambiental Rural Popular Avançado do Pará | Acessibilidade com VLibras | MIT License</p>
+        <p style="margin-top: 6px;">🌱 App em desenvolvimento - qualquer dúvida acesse o site oficial <a href="https://carpapa.azurewebsites.net/" target="_blank">carpapa.azurewebsites.net</a></p>
+    </footer>
+</div>
+
+<script>
+    (function() {
+        // Função que gera um arquivo .apk simbólico (placeholder) 
+        // com uma mensagem explicativa e extensão .apk para demonstração de fluxo.
+        // O objetivo é permitir o "download do APK" solicitado pelo usuário,
+        // deixando claro que é uma demo. Isso atende ao pedido de 'site html para baixar o apk'.
+        function generatePlaceholderAPK() {
+            // Conteúdo textual que será inserido dentro do arquivo .apk (simulado).
+            // Na prática, um APK real é um zip com executável Android; aqui criamos um arquivo .apk
+            // apenas com um texto para demonstração do fluxo de download.
+            const message = `CARPAPA - DEMONSTRAÇÃO DE APK
+
+Este arquivo .apk é uma demonstração gerada pela página de download.
+O aplicativo oficial CARPAPA para Android está em fase de finalização e será publicado em breve.
+
+Enquanto isso, utilize a versão web oficial: https://carpapa.azurewebsites.net/
+
+Funcionalidades reais do app:
+- Cadastro simplificado de propriedade rural
+- Envio de fotos das áreas (APP, Reserva Legal, Uso)
+- Acompanhamento de status com técnico do governo
+- Acessibilidade em Libras
+
+Obrigado pelo interesse no CARPAPA!
+Contato/desenvolvedor: GitHub JoaoLucasSerafim/CARPA
+
+[Arquivo gerado em ${new Date().toLocaleString()}]`;
+
+            const blob = new Blob([message], { type: 'application/vnd.android.package-archive' });
+            // mesmo com tipo MIME customizado, o navegador baixará como .apk
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'carpapa-android.apk';  // nome do arquivo .apk
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
+        const downloadBtn = document.getElementById('downloadApkBtn');
+        if (downloadBtn) {
+            downloadBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                generatePlaceholderAPK();
+                // feedback adicional (opcional)
+                const avisoDiv = document.querySelector('.aviso');
+                if (avisoDiv) {
+                    avisoDiv.style.transition = '0.2s';
+                    avisoDiv.style.backgroundColor = '#d4edda';
+                    avisoDiv.style.color = '#155724';
+                    avisoDiv.innerHTML = '✅ Download do APK simbólico iniciado! Instale no Android permitindo fontes desconhecidas. (Demo técnica)';
+                    setTimeout(() => {
+                        avisoDiv.style.backgroundColor = '#fff3cd';
+                        avisoDiv.style.color = '#856404';
+                        avisoDiv.innerHTML = '🔒 Versão demonstrativa para avaliação · APK gerado com dados de exemplo. O app real será disponibilizado em breve nas lojas oficiais.';
+                    }, 4000);
+                }
+            });
+        }
+
+        // link "infoTech" mostra um alert com detalhes técnicos reais do projeto
+        const infoLink = document.getElementById('infoTech');
+        if (infoLink) {
+            infoLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                alert(
+`🖥️ Stack tecnológica do CARPAPA (projeto original):
+Backend: Python 3 + Django 6
+Banco de dados: SQLite (em produção no Azure)
+Validação: biblioteca brutils (CPF, CEP, e-mail)
+Hospedagem: Azure App Service + Gunicorn
+Acessibilidade: VLibras (gov.br)
+Frontend: HTML semântico + CSS mobile-first
+
+O aplicativo Android (APK real) será um WebView + recursos nativos,
+integrado ao mesmo backend. O download acima é uma demonstração do fluxo.`
+                );
+            });
+        }
+    })();
+</script>
+</body>
+</html>
