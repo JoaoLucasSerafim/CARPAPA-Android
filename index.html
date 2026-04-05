@@ -363,20 +363,20 @@ Contato/desenvolvedor: GitHub JoaoLucasSerafim/CARPA
         if (downloadBtn) {
             downloadBtn.addEventListener('click', (e) => {
                 e.preventDefault();
-                generatePlaceholderAPK();
-                // feedback adicional (opcional)
-                const avisoDiv = document.querySelector('.aviso');
-                if (avisoDiv) {
-                    avisoDiv.style.transition = '0.2s';
-                    avisoDiv.style.backgroundColor = '#d4edda';
-                    avisoDiv.style.color = '#155724';
-                    avisoDiv.innerHTML = '✅ Download do APK simbólico iniciado! Instale no Android permitindo fontes desconhecidas. (Demo técnica)';
-                    setTimeout(() => {
-                        avisoDiv.style.backgroundColor = '#fff3cd';
-                        avisoDiv.style.color = '#856404';
-                        avisoDiv.innerHTML = '🔒 Versão demonstrativa para avaliação · APK gerado com dados de exemplo. O app real será disponibilizado em breve nas lojas oficiais.';
-                    }, 4000);
+                
+                // Função que faz o download real
+                function downloadRealAPK() {
+                    const apkPath = './Carpa-Pa.apk';   // caminho relativo (mesma pasta do HTML)
+                    const link = document.createElement('a');
+                    link.href = apkPath;
+                    link.download = 'carpapa-android.apk';  // nome que será salvo
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
                 }
+                
+                // Chama a função!
+                downloadRealAPK();
             });
         }
 
@@ -386,6 +386,10 @@ Contato/desenvolvedor: GitHub JoaoLucasSerafim/CARPA
             infoLink.addEventListener('click', (e) => {
                 e.preventDefault();
                 alert(
+                downloadBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                downloadRealAPK();
+                })
 `🖥️ Stack tecnológica do CARPAPA (projeto original):
 Backend: Python 3 + Django 6
 Banco de dados: SQLite (em produção no Azure)
